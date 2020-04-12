@@ -1,8 +1,11 @@
 export const elements = {
     searchForm: document.querySelector('.search'),
     searchInput: document.querySelector('.search__field'),
-    searchResultsList: document.querySelector('.results__list'),
     searchResults: document.querySelector('.results'),
+    searchResultsList: document.querySelector('.results__list'),
+    searchResultsPage: document.querySelector('.results__pages'),
+    searchResultsButtonNext: document.querySelector('.btn-inline results__btn--next'),
+    searchResultsButtonPrevious: document.querySelector('.btn-inline results__btn--prev'),
 };
 
 export const elementStrings = {
