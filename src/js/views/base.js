@@ -6,6 +6,7 @@ export const elements = {
     searchResultsPage: document.querySelector('.results__pages'),
     searchResultsButtonNext: document.querySelector('.btn-inline results__btn--next'),
     searchResultsButtonPrevious: document.querySelector('.btn-inline results__btn--prev'),
+    recipe: document.querySelector('.recipe'),
 };
 
 export const elementStrings = {
