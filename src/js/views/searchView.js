@@ -9,7 +9,22 @@ export const clearInput = () => {
 export const clearResults = () => {
     elements.searchResultsList.innerHTML = '';
     elements.searchResultsPage.innerHTML = '';
-}
+};
+
+export const renderResults = (recipes, page = 1, resultsPerPage = 10) => {
+    const start = 0 + (page-1)*resultsPerPage;
+    const end = page*resultsPerPage;
+    recipes.slice(start, end).forEach(renderRecipe);
+    renderButtons(page, recipes.length, resultsPerPage);
+};
+
+export const highlightSelected = id => {
+    const resultsListArray = Array.from(document.querySelectorAll('.results__link'));
+    resultsListArray.forEach(el => {
+        el.classList.remove('results__link--active');
+    });
+    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+};
 
 const limitRecipeTitle = (title, limit=17) => {
     if (title.length > limit) {
@@ -65,9 +80,3 @@ const renderButtons = (page, numberOfResults, resultsPerPage) => {
     }
 };
 
-export const renderResults = (recipes, page = 1, resultsPerPage = 10) => {
-    const start = 0 + (page-1)*resultsPerPage;
-    const end = page*resultsPerPage;
-    recipes.slice(start, end).forEach(renderRecipe);
-    renderButtons(page, recipes.length, resultsPerPage);
-};

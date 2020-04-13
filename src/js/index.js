@@ -81,6 +81,7 @@ const controlRecipe = async () => {
         // 2. prepare UI for change
         recipeView.clearRecipe();
         renderLoader(elements.recipe);
+        if (state.search) searchView.highlightSelected(id);
 
         // 3. create new Recipe object
         state.recipe = new Recipe(id);
@@ -105,3 +106,31 @@ const controlRecipe = async () => {
 };
 
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+
+// handle recipe button clicks
+elements.recipe.addEventListener('click', e => {
+    if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+        // decrease button clicked
+        if (state.recipe.servings > 1) {
+            state.recipe.updateServings('decrease');
+            recipeView.updateIngredients(state.recipe);
+            if (state.recipe.servings == 1) { 
+                document.querySelector('.recipe__info-buttons').removeChild(document.querySelector('.btn-decrease'));
+            }
+        }
+    }
+    else if (e.target.matches('.btn-increase, .btn-increase *')) {
+        // increase button clicked
+        state.recipe.updateServings('increase');
+        recipeView.updateIngredients(state.recipe);
+        if (state.recipe.servings == 2) { 
+            document.querySelector('.recipe__info-buttons')
+            .insertAdjacentHTML('beforeend', 
+            `<button class="btn-tiny btn-decrease">
+                <svg>
+                    <use href="img/icons.svg#icon-circle-with-minus"></use>
+                </svg>
+            </button>`)
+        }
+    }
+});
