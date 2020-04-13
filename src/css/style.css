@@ -25,7 +25,7 @@
     min-height: calc(100vh - 2 * 4vw); }
   
   .container {
-    max-width: 120rem;
+    max-width: 140rem;
     margin: 4vw auto;
     background-color: #fff;
     border-radius: 6px;
@@ -443,7 +443,7 @@
     .shopping__list {
       list-style: none;
       max-height: 77rem;
-      overflow: scroll; }
+      overflow-y: scroll; }
     .shopping__item {
       display: flex;
       align-items: flex-start;
@@ -465,7 +465,7 @@
         font-size: 1.2rem;
         text-align: center;
         border: none;
-        width: 3.7rem;
+        width: 4.7rem;
         border-radius: 3px; }
         .shopping__count input:focus {
           outline: none;
