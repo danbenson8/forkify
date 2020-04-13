@@ -166,7 +166,15 @@ const controlLikes = () => {
     }
     likesView.toggleLikeMenu(state.likes.getNumberOfLikes());
 };
-likesView.toggleLikeMenu(0);
+
+/** restore liked recipes on page load
+ */
+window.addEventListener('load', () => {
+    state.likes = new Likes();
+    state.likes.fromLocalStorage();
+    likesView.toggleLikeMenu(state.likes.getNumberOfLikes());
+    state.likes.likes.forEach(el => likesView.renderLike(el));
+})
 
 /** shopping list handler
  * - delete items
